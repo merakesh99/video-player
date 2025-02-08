@@ -56,15 +56,7 @@ export default async function VideoPage({ params }: {params: Promise<{ id: strin
   const videoUrl = videoDetails.secure_url;
 
   return (
-    <Container sx={{ py: 4 }}>
-      <Typography
-        variant="h4"
-        component="h1"
-        align="center"
-        sx={{ mb: 3, fontWeight: 'bold', color: '#333' }}
-      >
-        {title}
-      </Typography>
+    <Container sx={{ py: 10 }}>
       <Box sx={{ display: 'flex', justifyContent: 'left', mb: 3 }}>
         <Box
           sx={{
