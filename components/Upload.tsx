@@ -20,7 +20,6 @@ const Upload: React.FC<UploadProps> = ({ onUpload, isUploading = false }) => {
   const [error, setError] = useState<string | null>(null);
 
   const { getRootProps, getInputProps } = useDropzone({
-    // TASK_03: Add file type validation for video files only. ( Here we are using 'video/*' to accept all video file types. )
     accept: { 'video/*': [] },
     multiple: false,
     onDrop: (acceptedFiles) => {
@@ -36,7 +35,7 @@ const Upload: React.FC<UploadProps> = ({ onUpload, isUploading = false }) => {
     },
   });
 
-  // Handle the submission and clear the state afterward.
+  // Handle submission and clear state afterward.
   const handleSubmit = async () => {
     if (file && videoName) {
       await onUpload(file, videoName);
@@ -46,7 +45,6 @@ const Upload: React.FC<UploadProps> = ({ onUpload, isUploading = false }) => {
   };
 
   return (
-    <>
     <Box
       sx={{
         p: 4,
@@ -56,20 +54,29 @@ const Upload: React.FC<UploadProps> = ({ onUpload, isUploading = false }) => {
         backgroundColor: '#fff',
       }}
     >
+      {/* Dropzone when no file is selected */}
       {!file ? (
         <Box {...getRootProps()} sx={{ cursor: 'pointer', py: 4 }}>
           <input {...getInputProps()} />
           <Typography variant="body1" sx={{ color: '#666' }}>
-          {/* TASK_02: User can drag & drop files */}
-            Drag & drop a video file here, or click to select one. 
+            Drag & drop a video file here, or click to select one.
           </Typography>
         </Box>
       ) : (
-        <Box sx={{ mt: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
-          {/* Left Column: Dummy Video Thumbnail */}
+        // Responsive three-column layout for selected file.
+        <Box
+          sx={{
+            mt: 2,
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: 'center',
+            gap: 2,
+          }}
+        >
+          {/* Left Column: Dummy Thumbnail */}
           <Box
             sx={{
-              width: 120,
+              width: { xs: '100%', sm: 120 },
               height: 80,
               backgroundColor: '#ccc',
               borderRadius: 2,
@@ -84,9 +91,8 @@ const Upload: React.FC<UploadProps> = ({ onUpload, isUploading = false }) => {
             Video Thumbnail
           </Box>
 
-          {/* TASK_01  User can edit video name also */}
           {/* Middle Column: Video Title Input */}
-          <Box sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1, width: { xs: '100%', sm: 'auto' } }}>
             <TextField
               label="Video Title"
               variant="outlined"
@@ -96,20 +102,15 @@ const Upload: React.FC<UploadProps> = ({ onUpload, isUploading = false }) => {
               disabled={isUploading}
               sx={{
                 mb: 2,
-                input: { color: '#000' },
-                '& .MuiInputLabel-root': { color: '#99977', fontWeight: 'bold' },
-                '& .MuiOutlinedInput-root': {
-                  backgroundColor: '#fff',
-                  '& fieldset': { borderColor: '#1976d2' },
-                  '&.Mui-focused fieldset': { borderColor: '#115293' },
-                  '&.Mui-disabled fieldset': { borderColor: '#1976d2' },
-                },
+                input: { color: 'white' },
+                '& .MuiInputLabel-root': { color: 'white' },
+                '& .MuiOutlinedInput-root': { backgroundColor: '#333' },
               }}
             />
           </Box>
 
           {/* Right Column: Upload Button */}
-          <Box sx={{ minWidth: 120 }}>
+          <Box sx={{ minWidth: { xs: '100%', sm: 120 } }}>
             <Button
               variant="contained"
               fullWidth
@@ -132,9 +133,7 @@ const Upload: React.FC<UploadProps> = ({ onUpload, isUploading = false }) => {
                   thickness={4}
                   sx={{
                     color: '#fff',
-                    '& .MuiCircularProgress-circle': {
-                      strokeLinecap: 'round',
-                    },
+                    '& .MuiCircularProgress-circle': { strokeLinecap: 'round' },
                   }}
                 />
               ) : (
@@ -150,28 +149,24 @@ const Upload: React.FC<UploadProps> = ({ onUpload, isUploading = false }) => {
           {error}
         </Alert>
       )}
+      
+      {/* Back to Home Button */}
+      <Box sx={{ mt: 2 }}>
+        <Button
+          variant="outlined"
+          onClick={() => (window.location.href = '/')}
+          sx={{
+            py: 1.5,
+            fontWeight: 'bold',
+            backgroundColor: '#1976d2',
+            color: '#fff',
+            '&:hover': { backgroundColor: '#115293' },
+          }}
+        >
+          Back to Home
+        </Button>
+      </Box>
     </Box>
-
-    <Box sx={{ mt: 2 }}>
-      <Button
-      variant="outlined"
-      onClick={() => window.location.href = '/'}
-      sx={{
-        py: 1.5,
-        fontWeight: 'bold',
-        backgroundColor: '#1976d2',
-        color: '#fff',
-        '&:hover': { backgroundColor: '#115293' },
-        '&.Mui-disabled': {
-          backgroundColor: '#1976d2',
-          color: 'white',
-        },
-      }}
-      >
-      Back to Home
-      </Button>
-    </Box>
-    </>
   );
 };
 
