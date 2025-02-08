@@ -31,7 +31,7 @@ export default async function VideoPage({ params }: {params: Promise<{ id: strin
   // console.log('Video Data:', data);
   try {
     // Fetch video details from Cloudinary using the video public id.
-    videoDetails = await cloudinary.v2.api.resource(`$data`, { resource_type: 'video' });
+    videoDetails = await cloudinary.v2.api.resource(data, { resource_type: 'video' });
   } catch (error) {
     console.error('Error fetching video details:', error);
   }
