@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project README
 
-## Getting Started
+## Table of Contents
+- [Project README](#project-readme)
+  - [Table of Contents](#table-of-contents)
+  - [Project Overview](#project-overview)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Project](#running-the-project)
+  - [Folder Structure](#folder-structure)
+  - [Technologies Used](#technologies-used)
 
-First, run the development server:
+---
 
+## Project Overview
+This project is a **video player application** built with **Next.js**, **Material-UI**, and **TypeScript**. The application allows users to:
+- User can upload only video file , can edit video name also.
+- User can drag & drop files
+- View a list of videos in table List and Grid Format.
+- Play videos on a dedicated page.
+- Navigate through video details seamlessly.
+
+---
+
+## Prerequisites
+Before you begin, ensure you have the following installed:
+
+- **Node.js** (v16 or higher)
+- **npm** (v8 or higher) or **yarn** (v1.22 or higher)
+- **Git** (optional, for version control)
+
+To verify installation:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+node -v
+npm -v
+git --version
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Installation
+Follow these steps to set up the project:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the Repository:**
+   ```bash
+   git clone <repository-url>
+   cd <project-folder>
+   ```
 
-## Learn More
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   # Or if you prefer yarn:
+   yarn install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Environment Variables:**
+   Create a `.env.local` file in the root of your project and add the necessary environment variables:
+   ```env
+   CLOUDINARY_CLOUD_NAME=<your-cloud-name>
+   CLOUDINARY_API_KEY=<your-api-key>
+   CLOUDINARY_API_SECRET=<your-api-Secret-Key>
+   ```
+   Replace `<your-cloud-name>` and `<your-api-key>` and `<your-api-Secret-Key>` with actual values.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   For More go to: https://console.cloudinary.com/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Running the Project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Start the Development Server:**
+   ```bash
+   npm run dev
+   # Or with yarn:
+   yarn dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   The application will be available at: `http://localhost:3000`
+
+2. **Build for Production:**
+   ```bash
+   npm run build
+   # Or with yarn:
+   yarn build
+   ```
+
+3. **Run Production Build:**
+   ```bash
+   npm start
+   # Or with yarn:
+   yarn start
+   ```
+
+---
+
+## Folder Structure
+```
+project-root
+├── components          # Reusable React components
+├── pages               # Next.js page components
+│   ├── api             # API routes
+│   └── video           # Video-specific pages
+├── public              # Static assets
+├── styles              # Global and module CSS files
+├── utils               # Utility functions
+├── .env.local          # Environment variables
+├── package.json        # Project metadata and dependencies
+└── README.md           # Documentation
+```
+
+---
+
+## Technologies Used
+- **Next.js**: React framework for server-side rendering.
+- **Material-UI**: UI library for React components.
+- **TypeScript**: Strongly typed JavaScript for scalable development.
+- **Node.js**: Runtime environment for JavaScript.
+
+---
+
