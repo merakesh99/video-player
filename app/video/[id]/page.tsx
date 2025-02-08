@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Typography, Box, Button } from '@mui/material';
 import Link from 'next/link';
 import cloudinary from 'cloudinary';
+import CustomVideoPlayerProps from '../../../components/CustomVideoPlayer';
 
 export const runtime = 'nodejs'; // Ensure using the Node.js runtime
 
@@ -67,7 +68,7 @@ export default async function VideoPage({ params }: {params: Promise<{ id: strin
             boxShadow: 3,
           }}
         >
-          <video
+          {/* <video
             src={videoUrl}
             controls
             autoPlay
@@ -76,7 +77,9 @@ export default async function VideoPage({ params }: {params: Promise<{ id: strin
               width: '100%',
               borderRadius: 2,
             }}
-          />
+          /> */}
+
+          <CustomVideoPlayerProps src={videoUrl} />
         </Box>
       </Box>
       <Typography variant="h5" align="left" sx={{ color: '#fff' }}>

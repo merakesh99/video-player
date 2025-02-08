@@ -46,6 +46,7 @@ const Upload: React.FC<UploadProps> = ({ onUpload, isUploading = false }) => {
   };
 
   return (
+    <>
     <Box
       sx={{
         p: 4,
@@ -150,6 +151,27 @@ const Upload: React.FC<UploadProps> = ({ onUpload, isUploading = false }) => {
         </Alert>
       )}
     </Box>
+
+    <Box sx={{ mt: 2 }}>
+      <Button
+      variant="outlined"
+      onClick={() => window.location.href = '/'}
+      sx={{
+        py: 1.5,
+        fontWeight: 'bold',
+        backgroundColor: '#1976d2',
+        color: '#fff',
+        '&:hover': { backgroundColor: '#115293' },
+        '&.Mui-disabled': {
+          backgroundColor: '#1976d2',
+          color: 'white',
+        },
+      }}
+      >
+      Back to Home
+      </Button>
+    </Box>
+    </>
   );
 };
 

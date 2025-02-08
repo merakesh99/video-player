@@ -70,7 +70,7 @@ export default function Home() {
           color: '#666',
         }}
       >
-        Video Upload
+        Upload Your Video
       </Typography>
 
       {uploadSuccess && (
@@ -93,6 +93,7 @@ export default function Home() {
           textAlign: 'center',
           color: '#666',
           mb: 3,
+          fontStyle: 'italic',
         }}
       >
         Please upload video files in MP4, WebM, or MOV format.
