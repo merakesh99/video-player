@@ -87,9 +87,20 @@ export default function Home() {
       
       <Upload onUpload={handleUpload} isUploading={isUploading} />
 
-      <Box sx={{ mt: 4 }}>
+      <Typography
+        variant="body1"
+        sx={{
+          textAlign: 'center',
+          color: '#666',
+          mb: 3,
+        }}
+      >
+        Please upload video files in MP4, WebM, or MOV format.
+      </Typography>
+
+      {/* <Box sx={{ mt: 4 }}>
         <VideoList videos={videos} />
-      </Box>
+      </Box> */}
     </Container>
   );
 }

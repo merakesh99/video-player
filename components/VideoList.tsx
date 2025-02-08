@@ -13,6 +13,7 @@ import {
   TableContainer,
   TableRow,
   Paper,
+  TableHead,
 } from '@mui/material';
 import Link from 'next/link';
 
@@ -182,111 +183,118 @@ const VideoList: React.FC<VideoListProps> = ({ videos }) => {
       ) : (
         // Table view remains as-is
         <TableContainer component={Paper} sx={{ mt: 2, backgroundColor: '#0a0a0a' }}>
-          <Table>
-            <TableBody>
-              {videos.map((video) => (
-                <TableRow
-                  key={video.id}
+        <Table>
+          <TableHead>
+            <TableRow>
+              {/* Optionally add headers if needed */}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {videos.map((video) => (
+              <TableRow
+                key={video.id}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  borderBottom: '1px solid #333',
+                }}
+              >
+                {/* Video Thumbnail */}
+                <TableCell sx={{ borderBottom: 'none', p: 1, width: '25%' }}>
+                  <Link href={`/video/${video.filename}`} passHref>
+                    <Box
+                      component="video"
+                      src={video.url}
+                      controls={false} // hides default controls for thumbnail display
+                      sx={{
+                        width: '100%',
+                        borderRadius: 4,
+                        cursor: 'pointer',
+                      }}
+                    />
+                  </Link>
+                </TableCell>
+      
+                {/* Video Details */}
+                <TableCell
                   sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    borderBottom: '1px solid #333',
+                    borderBottom: 'none',
+                    p: 2,
+                    color: '#fff',
+                    width: '50%',
                   }}
                 >
-                  {/* Video Thumbnail */}
-                  <TableCell sx={{ borderBottom: 'none', p: 1, width: '25%' }}>
-                    <Link href={`/video/${video.filename}`} passHref>
-                      <Box
-                        component="video"
-                        src={video.url}
-                        controls={false}
-                        sx={{
-                          width: '100%',
-                          borderRadius: 4,
-                          cursor: 'pointer',
-                        }}
-                      />
-                    </Link>
-                  </TableCell>
-
-                  {/* Video Details */}
-                  <TableCell
-                    sx={{
-                      borderBottom: 'none',
-                      p: 2,
-                      color: '#fff',
-                      width: '75%',
-                    }}
-                  >
-                    <Link href={`/video/${video.filename}`} passHref>
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          color: '#ededed',
-                          fontWeight: 'bold',
-                          textDecoration: 'none',
-                          mb: 1,
-                        }}
-                      >
-                        {video.title}
-                      </Typography>
-                    </Link>
-                    <Typography variant="caption" sx={{ color: '#aaa' }}>
-                      200 views • 1 days ago
-                    </Typography>
-                    <Box
+                  <Link href={`/video/${video.filename}`} passHref>
+                    <Typography
+                      variant="h6"
+                      noWrap
                       sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 1, // Spacing between initials and name
+                        color: '#ededed',
+                        fontWeight: 'bold',
+                        textDecoration: 'none',
+                        mb: 1,
                       }}
                     >
-                      {/* Initials */}
-                      <Box
-                        sx={{
-                          width: 30,
-                          height: 30,
-                          borderRadius: '50%',
-                          backgroundColor: '#1a1a1a',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#ededed',
-                          fontWeight: 'bold',
-                          marginTop: 1,
-                        }}
-                      >
-                        RS
-                      </Box>
-                      {/* Name */}
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: '#aaa',
-                          fontWeight: 'bold',
-                        }}
-                      >
-                        Rakesh Sadhukhan
-                      </Typography>
-                    </Box>
-
-
-                  </TableCell>
-                  {/* Three Dots */}
-
-                  <Typography
-                    variant="h6"
-                    component="span"
-                    sx={{ fontWeight: 'bold', color: '#ededed' }}
-                  >
-                    ⋮
+                      {video.title}
+                    </Typography>
+                  </Link>
+                  <Typography variant="caption" sx={{ color: '#aaa', display: 'block' }}>
+                    200 views • 1 days ago
                   </Typography>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1,
+                      mt: 1,
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: '50%',
+                        backgroundColor: '#1a1a1a',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#ededed',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      RS
+                    </Box>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: '#aaa',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      Rakesh Sadhukhan
+                    </Typography>
+                  </Box>
+                </TableCell>
+      
+                {/* Options: Three Dots */}
+                <TableCell align="right" sx={{ borderBottom: 'none', p: 2, width: '25%' }}>
+                  <Link href={`/video/${video.filename}`} passHref>
+                    <Typography
+                      variant="h6"
+                      component="span"
+                      sx={{ fontWeight: 'bold', color: '#ededed', cursor: 'pointer' }}
+                    >
+                      ⋮
+                    </Typography>
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      
 
       )}
     </Box>
